@@ -1,8 +1,14 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap.scss";
-@import url(http://fonts.googleapis.com/css?family=Lato:400,900);
 // endbower
+
+$base: #2F0F00;
+$base-green: #a5e97e;
+$dark-green: #62ab2d;
+$base-yellow: #fff000;
+$base-red: #ac2925;
+$base-blue: #00b3ee;
 
 .browsehappy {
   margin: 0.2em 0;
@@ -14,15 +20,18 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 #mother-of-divs {
   min-height: 100%;
   min-width: 100%;
-  background: transparent url("../images/background.jpg") no-repeat 0 0;
+  background: $base url("../images/bg.jpg") no-repeat 0 0;
   color: #FFF;
   font-family: 'Lato', sans-serif;
 }
 
-.row {
-  & > div {
-    min-height: 500px;
-  }
+.row-centered {
+  text-align: center;
+}
+
+.col-centered {
+  display: inline-block;
+  float: none;
 }
 
 ul.raw {
@@ -35,6 +44,15 @@ ul.raw {
 
 .root {
   text-align: center;
+  .logo-fix {
+    position: relative;
+    top: 16px;
+  }
+  .dl-cv-fix {
+    img {
+      margin-top: 3px;
+    }
+  }
   .circle {
     $base: 130px;
 
@@ -44,23 +62,142 @@ ul.raw {
     background: #FFF;
     display: inline-block;
     margin: 5px 0;
+
+    &.image-fix {
+      line-height: 128px;
+      img {
+        max-width: 110px;
+        border-radius: 110px;
+      }
+    }
   }
 }
-h4{
-  font-weight: 900;
+
+h4 {
+  font-weight: 700;
   padding-bottom: 0;
   margin-bottom: 0;
+  font-size: 1.4em;
 }
-$base-green: #62ab2c;
+
 .green-foreground {
-  color: lighten($base-green,10%);
+  color: $base-green;
 }
+
 .green-background {
   background: $base-green;
 }
 
 @for $i from 1 through 40 {
   .height-#{$i * 10} {
+    display: block;
     height: 10px * $i;
+  }
+}
+
+h1 {
+  &.get-in-touch {
+    text-align: center;
+    font-weight: 300;
+    text-transform: uppercase;
+    padding-bottom: 50px;
+  }
+}
+
+.links {
+  $base: 50px;
+  .social-circle, .pseudo {
+    width: $base;
+    height: $base;
+    display: inline-block;
+  }
+  .social-circle {
+    cursor: pointer;
+    margin: 50px 0 25px 0;
+    background-color: darken($base-yellow, 15%);
+    border-radius: $base;
+    line-height: $base * 1.25;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    transition: background-color 0.5s ease-in;
+
+    i {
+      font-size: 2.0em;
+      display: inline-block;
+      width: $base;
+      height: $base;
+      color: darken($dark-green, 15%);
+
+      transition: color 0.5s ease-in;
+    }
+
+    &:hover {
+      background-color: $base-yellow;
+      i {
+        color: $dark-green;
+      }
+    }
+  }
+  .pseudo {
+    margin-top: 50px;
+    margin-left: ($base /2 ) * -1;
+    position: absolute;
+
+    &:before, &:after {
+      content: '';
+      position: absolute;
+      display: inline-block;
+      width: $base;
+      height: $base;
+      border-radius: $base;
+    }
+
+    &:before {
+      background-color: darken($base-red, 10%);
+      margin-top: -2px;
+      margin-left: -2px;
+    }
+    &:after {
+      background-color: darken($base-blue, 10%);
+      margin-top: 2px;
+      margin-left: 2px;
+    }
+  }
+  .heading {
+    @extend .green-foreground;
+    font-size: 1.75em;
+  }
+}
+
+.width-310 {
+  width: 40%;
+}
+
+.button-ish {
+  height: 45px;
+  margin: 0 5px;
+  border-radius: 25px;
+  background: rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.5);
+  display: inline-block;
+  min-width: 200px;
+  line-height: 45px;
+  text-align: center;
+  transition: all 0.4s ease-in;
+  &:hover {
+    background: rgba(0, 0, 0, 0.35);
+    box-shadow: inset 0 7px 7px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.credits {
+  p {
+    color: darken(#FFF, 10%);
+    padding: 0;
+    margin: 0;
+    &:first-child {
+      text-transform: uppercase;
+    }
   }
 }
